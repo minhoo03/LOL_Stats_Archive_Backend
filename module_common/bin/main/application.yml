@@ -75,9 +75,11 @@ mybatis:
         safe-row-bounds-enabled: true
         map-underscore-to-camel-case: true
         jdbc-type-for-null: NULL
-
 management:
     endpoints:
         web:
             exposure:
                 include: refresh,health,beans,httpexchanges
+global:
+    api:
+        key: RGAPI-79753364-fbc9-4b2e-b1bf-44ce555e11fc#M0bisSecurity12#
