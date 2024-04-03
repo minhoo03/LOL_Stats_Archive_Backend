@@ -24,7 +24,7 @@ public class SampleService {
     SampleRepo sampleRepo;
 
     @Autowired
-    private ApiUtil apiUtil;
+    ApiUtil apiUtil;
 
 
     public String getSampleTemplateList(String userName){
@@ -32,8 +32,7 @@ public class SampleService {
         return userName;
     }
 
-    public Mono<String> getApiTest(String userName) {
-        
-        return apiUtil.getSummoner(userName);
+    public Mono<String> getApiTest(String userName, String tagLine) {
+        return apiUtil.getSummoner(userName, tagLine);
     }
 }

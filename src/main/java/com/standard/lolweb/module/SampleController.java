@@ -24,9 +24,9 @@ public class SampleController {
     }
 
     @GetMapping("/api/guide/apiTest")
-    public Mono<String> getApiTest(@RequestParam("userName") String userName){
-
-        return sampleService.getApiTest(userName);
+    public Mono<String> getApiTest(@RequestParam("userName") String userName,
+                                   @RequestParam("tagLine") String tagLine){
+        return sampleService.getApiTest(userName, tagLine);
 
     }
 }
