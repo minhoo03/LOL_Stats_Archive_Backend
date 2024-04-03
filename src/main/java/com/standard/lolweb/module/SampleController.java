@@ -1,16 +1,11 @@
 package com.standard.lolweb.module;
 
-import com.standard.lolweb.model.Sample;
-import jakarta.servlet.http.HttpServletRequest;
-import jakarta.servlet.http.HttpSession;
+import com.standard.lolweb.model.Account;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
-
-import java.util.List;
 
 @RestController
 public class SampleController {
@@ -24,8 +19,8 @@ public class SampleController {
     }
 
     @GetMapping("/api/guide/apiTest")
-    public Mono<String> getApiTest(@RequestParam("userName") String userName,
-                                   @RequestParam("tagLine") String tagLine){
+    public Mono<Account> getApiTest(@RequestParam("userName") String userName,
+                                    @RequestParam("tagLine") String tagLine){
         return sampleService.getApiTest(userName, tagLine);
 
     }

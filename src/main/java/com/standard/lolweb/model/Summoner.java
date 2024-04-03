@@ -1,6 +1,6 @@
 package com.standard.lolweb.model;
 
-public class Sample {
+public class Summoner {
 
     private String id;
     private String accountId;
