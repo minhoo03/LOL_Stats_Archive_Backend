@@ -1,4 +1,4 @@
-package com.standard.lolweb.module;
+package com.standard.lolweb.module.sample;
 
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
