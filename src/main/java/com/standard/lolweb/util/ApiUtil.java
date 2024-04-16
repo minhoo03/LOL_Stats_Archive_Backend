@@ -2,6 +2,7 @@ package com.standard.lolweb.util;
 
 import com.standard.lolweb.model.Account;
 import com.standard.lolweb.model.ChampionMastery;
+import com.standard.lolweb.model.LeagueEntryDTO;
 import com.standard.lolweb.model.Summoner;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -13,6 +14,7 @@ import org.springframework.web.reactive.function.client.WebClient;
 import reactor.core.publisher.Mono;
 
 import java.util.List;
+import java.util.Set;
 
 @Configuration
 public class ApiUtil {
@@ -63,12 +65,24 @@ public class ApiUtil {
      * @return
      */
     public List<ChampionMastery> getChampionMastery(String myEncryptedPUUID){
+        return getChampionMastery(myEncryptedPUUID, 1);
+    }
+
+    public List<ChampionMastery> getChampionMastery(String myEncryptedPUUID, int count)  {
         List<ChampionMastery> result = webClient.get()
-                .uri("https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/"+myEncryptedPUUID+"/top?api_key="+apiKey)
+                .uri("https://kr.api.riotgames.com/lol/champion-mastery/v4/champion-masteries/by-puuid/"+myEncryptedPUUID+"/top?api_key="+apiKey+"&count="+count)
                 .retrieve()
                 .bodyToMono(new ParameterizedTypeReference<List<ChampionMastery>>() {})//List로 받을때
                 .block();
 
         return result;
+    }
+
+    public Set<LeagueEntryDTO> getLeagueEntryDTOSet(String encryptedSummonerId) {
+        return webClient.get()
+                .uri("https://kr.api.riotgames.com/lol/league/v4/entries/by-summoner/"+encryptedSummonerId+"?api_key="+apiKey)
+                .retrieve()
+                .bodyToMono(new ParameterizedTypeReference<Set<LeagueEntryDTO>>() {})
+                .block();
     }
 }

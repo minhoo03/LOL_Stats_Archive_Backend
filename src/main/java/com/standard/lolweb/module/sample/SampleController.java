@@ -1,6 +1,7 @@
 package com.standard.lolweb.module.sample;
 
 import com.standard.lolweb.model.ChampionMastery;
+import com.standard.lolweb.model.SummonerInfoDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -25,5 +26,10 @@ public class SampleController {
 
         return sampleService.getApiTest(userName, tagLine);//비즈니스 로직에서 받아온걸 넘겨줌. 여기선 userName, tagLine을 넘김
 
+    }
+
+    @GetMapping("/api/summonerInfo")
+    public SummonerInfoDTO getSummonerInfo(@RequestParam("gameName") String gameName, @RequestParam("tagLine") String tagLine)  {
+        return sampleService.getSummonerInfo(gameName, tagLine);
     }
 }

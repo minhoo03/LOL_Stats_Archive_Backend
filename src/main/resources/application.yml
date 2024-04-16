@@ -83,4 +83,4 @@ management:
         include: refresh,health,beans,httpexchanges
 global:
   api:
-    key: RGAPI-47ef6153-e8e5-4f14-8050-5251489178b3
+    key: RGAPI-59bdce72-578a-4c6a-9a1e-e42eec07c744

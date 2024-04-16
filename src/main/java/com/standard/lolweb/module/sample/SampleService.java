@@ -3,6 +3,7 @@ package com.standard.lolweb.module.sample;
 import com.standard.lolweb.model.Account;
 import com.standard.lolweb.model.ChampionMastery;
 import com.standard.lolweb.model.Summoner;
+import com.standard.lolweb.model.SummonerInfoDTO;
 import com.standard.lolweb.util.ApiUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -33,5 +34,14 @@ public class SampleService {
 
         System.out.println(myEncryptedPUUID);//디버그용
         return myChampionMasteryInfo;
+    }
+
+    public SummonerInfoDTO getSummonerInfo(String gameName, String tagLine) {
+        var account = apiUtil.getAccount(gameName, tagLine);
+        var summoner = apiUtil.getSummoner(account.getPuuid());
+        var championMasteries = apiUtil.getChampionMastery(account.getPuuid(), 3);
+        var leagueEntries = apiUtil.getLeagueEntryDTOSet(summoner.getId());
+
+        return new SummonerInfoDTO(account, summoner, championMasteries, leagueEntries);
     }
 }
